@@ -101,7 +101,7 @@ const Home = (props) => {
     }, [Menuitem])
 
     const renderItem = (item) => {
-        return (<PostList imgURL={item?.imgURL} id={item?.id} />)
+        return (<PostList data={item} imgURL={item?.imgURL} id={item?.id} />)
     }
 
     const CatagoryItemHendler = useCallback((index) => {

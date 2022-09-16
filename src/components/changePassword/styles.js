@@ -4,18 +4,15 @@ import { color, fontSize, responsiveWidth } from "../../constant/theme";
 export const styles = StyleSheet.create({
     pikContainer: {
         backgroundColor: color.darkwhitep,
-        marginHorizontal: responsiveWidth("3%"),
-        marginVertical: responsiveWidth("2%"),
+        margin: responsiveWidth("3%"),
         borderRadius: 10,
         borderColor: color.gray,
-        borderWidth: 0.5
+        borderWidth: 1
     },
     firstviwecontainer: {
         flexDirection: "row",
-        backgroundColor: color.white,
         alignItems: "center",
         borderRadius: 7,
-        // alignSelf: "center"
     },
     textcontainer: {
         color: color.black,
@@ -25,11 +22,8 @@ export const styles = StyleSheet.create({
         padding: responsiveWidth(3.5)
     },
     modalView: {
-        margin: 20,
         backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
+        padding: responsiveWidth("5%"),
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -37,19 +31,21 @@ export const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        elevation: 5
+        elevation: 5,
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 20
     },
     centeredView: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
+        justifyContent: "flex-end",
+        backgroundColor: color.transparentGray
     },
     tinyLogo: {
         width: responsiveWidth("6%"),
         height: responsiveWidth("6%"),
         resizeMode: "contain",
-        bottom: responsiveWidth("4%"),
-        left: responsiveWidth("4%")
+        bottom: responsiveWidth("1%"),
+        left: responsiveWidth("1%"),
+
     },
 });

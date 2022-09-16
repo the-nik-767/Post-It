@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { icons } from '../../assets';
@@ -5,26 +6,18 @@ import { color, responsiveWidth } from '../../constant/theme'
 
 
 export const Like = (props) => {
-    const [Liked, SetLiked] = useState(false);
-
-    const onLikePress = useCallback(() => {
-        SetLiked(false);
-    }, [Liked]);
-
-    const onUnLikePress = useCallback(() => {
-        SetLiked(true);
-    }, [Liked]);
+    const navigation = useNavigation()
+    const onEditPress = () => {
+        navigation.navigate("EditPhoto", { data: props.data });
+    }
 
     return (
         <View style={{ backgroundColor: color.white, flex: 1, justifyContent: "center", alignItems: "center", }}>
-            <TouchableOpacity onPress={Liked ? onLikePress : onUnLikePress}>
-                {Liked ? (<Image
+            <TouchableOpacity onPress={onEditPress}>
+                <Image
                     style={[style.tinyLogo]}
-                    source={icons.ic_like}
-                />) : (<Image
-                    style={[style.tinyLogo]}
-                    source={icons.ic_unlike}
-                />)}
+                    source={icons.ic_editpic}
+                />
             </TouchableOpacity>
         </View>
     )

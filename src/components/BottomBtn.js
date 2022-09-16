@@ -1,14 +1,13 @@
 import React from 'react'
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { View } from 'react-native'
+import { color } from '../constant/theme'
+import { Button } from './common/button'
 import Share from 'react-native-share';
-import { icons } from '../assets';
-import { color, responsiveWidth } from '../constant/theme';
+import { styles } from '../screen/EditPhoto/styles';
 
 function BottomBtn(props) {
-    const { imgURL } = props
-
     const onPressShare = () => {
-        imgURL.current.capture().then(uri => {
+        props.viewShotRef.current.capture().then(uri => {
             const shareOptions = {
                 title: 'Share via',
                 url: uri,
@@ -26,29 +25,18 @@ function BottomBtn(props) {
 
     return (
         <View style={styles.bottomContainer}>
-            <TouchableOpacity onPress={onPressShare}>
-                <Image
-                    style={[styles.tinyLogo]}
-                    source={icons.ic_send}
-                />
-            </TouchableOpacity>
+            <Button
+                title={"Edit"}
+                onPress={props.showActionSheetEdit}
+                buttonContainer={[styles.FooterhandleBtn, { backgroundColor: color.primary }]}
+            />
+            <Button
+                title={"Share"}
+                onPress={onPressShare}
+                buttonContainer={[styles.btnShare, { backgroundColor: color.primary }]}
+            />
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    bottomContainer: {
-        backgroundColor: color.primary,
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    tinyLogo: {
-        width: responsiveWidth("6%"),
-        height: responsiveWidth("6%"),
-        tintColor: color.white
-    }
-});
-
-
-export default BottomBtn 
+export default BottomBtn

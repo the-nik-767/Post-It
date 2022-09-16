@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, View, Modal, Alert, Image } from 'react-native'
-import { color } from '../../constant/theme';
+import { color, responsiveWidth } from '../../constant/theme';
 import { InputBox, Button } from '../index';
 import { styles } from './styles'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -32,6 +32,7 @@ const ChangePassword = () => {
     const onchangeHendlar = () => {
         setisVisible(true)
         reauthenticate(OldPassword).then(() => {
+            setisVisible(false)
             const user = firebase.auth().currentUser;
             user.updatePassword(Password).then((i) => {
                 setisVisible(false)
@@ -76,16 +77,15 @@ const ChangePassword = () => {
             </TouchableOpacity>
             <Modal
                 animationType="slide"
-                style={{ backgroundColor: color.gray }}
+                style={{ backgroundColor: color.transparent }}
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
-                    // Alert.alert("Modal has been closed.");
+                    Alert.alert("Modal has been closed.");
                     setModalVisible(!modalVisible);
                 }}
             >
                 <View style={styles.centeredView}>
-
                     <View style={styles.modalView}>
                         <TouchableOpacity style={{ alignSelf: "flex-end" }} onPress={() => setModalVisible(false)}>
                             <Image style={styles.tinyLogo} source={icons.ic_cancel} />
@@ -117,15 +117,8 @@ const ChangePassword = () => {
                         <Button
                             title={"Save Password"}
                             onPress={onchangeHendlar}
+                            buttonContainer={{ marginVertical: responsiveWidth("5%") }}
                         />
-                        {/* <TouchableOpacity
-                            onPress={() => onchangeHendlar()}
-                            style={styles.pikContainer}
-                        >
-                            <View style={styles.firstviwecontainer}>
-                                <Text style={styles.textcontainer}>Save Password</Text>
-                            </View>
-                        </TouchableOpacity> */}
                     </View>
                 </View>
                 <Loader isVisible={isVisible} />

@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     ScrollView,
     TextInput,
+    Alert,
 } from "react-native";
 import ActionSheet from "react-native-actionsheet";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
@@ -305,38 +306,13 @@ const Profile = (props) => {
                         />
                     </View>
                 </View>
-                {/* <View style={style.pikContainer}>
-                    <View style={style.firstviwecontainer}>
+                <TouchableOpacity onPress={() => { Alert.alert("You Can't Change Email.", "For Change Email Contact To Admin") }} style={style.pikContainer}>
+                    <View style={[style.firstviwecontainer, { marginVertical: responsiveWidth("3.5%") }]}>
                         <Text style={style.textcontainer}>Email</Text>
-                        <TextInput
-                            autoCorrect={false}
-                            placeholder="Email"
-                            value={userData?.email}
-                            style={style.detelcontainer}
-                            onChangeText={(txt) => {
-                                setuserData({
-                                    ...userData,
-                                    email: txt,
-                                })
-                            }}
-                        />
-                        <Text style={style.detelcontainer}>{userData?.email}</Text>
-                    </View>
-                </View> */}
-
-                <TouchableOpacity style={style.pikContainer}>
-                    <View style={{ flex: 1, justifyContent: "center" }}>
-                        <Text style={style.textcontainer}>Email</Text>
-                    </View>
-                    <View style={style.firstviwecontainer}>
-                        <View>
-                            <Text style={style.detelcontainer}>{userData?.email}</Text>
-                        </View>
+                        <Text style={[style.detelcontainer, { marginRight: 5 }]} >{userData?.email}</Text>
                     </View>
                 </TouchableOpacity>
-
                 <ChangePassword />
-
                 <View style={{ height: responsiveWidth("30%") }} />
             </ScrollView>
             <Loader isVisible={isVisible} />

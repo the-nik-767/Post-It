@@ -71,7 +71,7 @@ export const style = StyleSheet.create({
         marginVertical: responsiveWidth("2%"),
         borderRadius: 10,
         borderColor: color.gray,
-        borderWidth: 0.5
+        borderWidth: 1
     },
 
     textcontainer: {

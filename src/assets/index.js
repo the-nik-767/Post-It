@@ -19,4 +19,5 @@ export const icons = {
     ic_box: require("./icons/box.png"),
     ic_edit: require("./icons/edit.png"),
     ic_cancel: require("./icons/cancel.png"),
+    ic_editpic: require("./icons/editpic.png"),
 };

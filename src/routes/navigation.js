@@ -11,6 +11,7 @@ import { Image, StyleSheet, View } from "react-native";
 import Profile from "../screen/Profile";
 import splashScreen from "../screen/splashScreen";
 import Settings from "../screen/Settings";
+import EditPhoto from "../screen/EditPhoto/EditPhoto";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ function MainNavigator() {
                 <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="Home" component={MyTabs} />
                 <Stack.Screen name="Settings" component={Settings} />
+                <Stack.Screen name="EditPhoto" component={EditPhoto} />
             </Stack.Navigator>
         </NavigationContainer>
     );

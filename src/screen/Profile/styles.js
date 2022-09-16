@@ -64,11 +64,10 @@ export const style = StyleSheet.create({
     },
     pikContainer: {
         backgroundColor: color.darkwhitep,
-        marginHorizontal: responsiveWidth("3%"),
-        marginVertical: responsiveWidth("2%"),
+        margin: responsiveWidth("2.5%"),
         borderRadius: 10,
         borderColor: color.gray,
-        borderWidth: 0.5
+        borderWidth: 1
     },
 
     textcontainer: {
@@ -89,11 +88,10 @@ export const style = StyleSheet.create({
     detelcontainer: {
         // flex: 1,
         color: color.black,
-        paddingRight: responsiveWidth("1%"),
+        // paddingRight: responsiveWidth("1%"),
     },
     firstviwecontainer: {
         flexDirection: "row",
-        backgroundColor: color.white,
         alignItems: "center",
         borderRadius: 7,
     },
