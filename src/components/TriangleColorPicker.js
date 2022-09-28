@@ -17,44 +17,44 @@ const TriangleColorPickerpopover = (props) => {
     }
 
     return (
-        <Modal isVisible={toggleModal} animationIn={"slideInUp"}>
-            <View
-                style={{
-                    backgroundColor: color.white,
-                    borderRadius: 10,
-                }}
-            >
-                <TriangleColorPicker
-                    onColorChange={(color) => convetColor(color)}
-                    onOldColorSelected={(color) => SetColorSelected(color)}
-                    style={{ height: responsiveWidth("50%"), width: responsiveWidth("50%"), marginHorizontal: responsiveWidth("20%") }}
+        // <Modal isVisible={toggleModal} animationIn={"slideInUp"}>
+        <View
+            style={{
+                backgroundColor: color.transparent,
+                // flex: 1
+            }}
+        >
+            <TriangleColorPicker
+                onColorChange={(color) => convetColor(color)}
+                onOldColorSelected={(color) => SetColorSelected(color)}
+                style={{ height: responsiveWidth("30%"), width: responsiveWidth("60%"), marginHorizontal: responsiveWidth("20%") }}
+            />
+            <Text style={{ alignSelf: "center", color: color.black }}>Select Color</Text>
+            <View style={{ flexDirection: 'row', justifyContent: "space-around" }}>
+                {/* <Button
+                    title={"Back"}
+                    onPress={() => props.ToggleModalHandler()}
+                    buttonContainer={{
+                        width: responsiveWidth("25%"),
+                        padding: responsiveWidth("3%"),
+                        borderRadius: 5,
+                        backgroundColor: color.primary,
+                    }}
+                /> */}
+                <Button
+                    title={"save"}
+                    onPress={() => props.FooterColorhandle(ColorSelected)}
+                    buttonContainer={{
+                        width: responsiveWidth("20%"),
+                        padding: responsiveWidth("1%"),
+                        borderRadius: 5,
+                        backgroundColor: color.primary
+                    }}
                 />
-                <Text style={{ alignSelf: "center", color: color.black }}>Select Color</Text>
-                <View style={{ flexDirection: 'row', justifyContent: "space-around" }}>
-                    <Button
-                        title={"Back"}
-                        onPress={() => props.ToggleModalHandler()}
-                        buttonContainer={{
-                            width: responsiveWidth("25%"),
-                            padding: responsiveWidth("3%"),
-                            borderRadius: 5,
-                            backgroundColor: color.primary,
-                        }}
-                    />
-                    <Button
-                        title={"save"}
-                        onPress={() => props.FooterColorhandle(ColorSelected)}
-                        buttonContainer={{
-                            width: responsiveWidth("25%"),
-                            padding: responsiveWidth("3%"),
-                            borderRadius: 5,
-                            backgroundColor: color.primary
-                        }}
-                    />
-                </View>
-
             </View>
-        </Modal>
+
+        </View>
+        // </Modal>
     )
 }
 

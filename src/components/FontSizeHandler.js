@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { icons } from '../assets';
+import { responsiveWidth } from '../constant/theme';
 import { styles } from '../screen/EditPhoto/styles';
 import FontSizeSlider from './FontSizeSlider';
 
@@ -8,8 +10,16 @@ function FontSizeHandler(props) {
 
     return (
         <View>
-            <TouchableOpacity onPress={() => setToggleModal1(!toggleModal1)} style={styles.ColorContainer}>
-                <Text style={styles.colorTxt}>Font Size</Text>
+            <TouchableOpacity onPress={() => setToggleModal1(!toggleModal1)} >
+                <Image
+                    source={icons.ic_font_typography}
+                    style={{
+                        height: responsiveWidth("5%"),
+                        width: responsiveWidth("5%"),
+                        margin: 15
+                    }}
+                    resizeMode="contain"
+                />
             </TouchableOpacity>
             <FontSizeSlider maximumValue={props.maximumValue} toggleModal1={toggleModal1} ToggleModalHandler1={() => setToggleModal1(!toggleModal1)} fontSizefooterHandler={props.fontSizefooterHandler} />
         </View>

@@ -28,7 +28,9 @@ const PostList = (props) => {
     return (
         <View key={id} style={styles.item} >
             <View style={styles.postCard}>
-                <TouchableOpacity onPress={() => navigation.navigate("EditPhoto", { data: data })} >
+                <View
+                // onPress={() => navigation.navigate("EditPhoto", { data: data })} 
+                >
                     <ViewShot captureMode="mount" style={{ backgroundColor: color.transparent, justifyContent: "center", alignSelf: "center", }} ref={ref}>
                         <ImageBackground
                             source={{
@@ -43,10 +45,10 @@ const PostList = (props) => {
                                 justifyContent: "flex-end",
                             }}
                         >
-                            {/* <Profile imgss={styles.profileimgStyle} /> */}
+                            <Profile imgss={styles.profileimgStyle} />
                         </ImageBackground>
                     </ViewShot>
-                </TouchableOpacity>
+                </View>
                 <View style={styles.bottomMain}>
                     <View style={styles.likeMain}>
                         <View style={styles.likeCantainer}>

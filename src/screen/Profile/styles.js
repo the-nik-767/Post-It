@@ -72,8 +72,8 @@ export const style = StyleSheet.create({
 
     textcontainer: {
         color: color.black,
-        marginLeft: responsiveWidth("3%"),
-        flex: 1,
+        marginLeft: responsiveWidth("7%"),
+        top: 9,
         fontSize: fontSize.mini,
     },
     nextcontainer: {
@@ -86,9 +86,9 @@ export const style = StyleSheet.create({
         resizeMode: "contain"
     },
     detelcontainer: {
-        // flex: 1,
         color: color.black,
-        // paddingRight: responsiveWidth("1%"),
+        marginLeft: responsiveWidth("4%"),
+        flex: 1
     },
     firstviwecontainer: {
         flexDirection: "row",

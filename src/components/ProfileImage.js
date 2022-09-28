@@ -11,7 +11,7 @@ const Profile = (props) => {
 
     return (
         < View >
-            <TouchableOpacity>
+            <View>
                 <Image
                     source={
                         pic
@@ -25,7 +25,7 @@ const Profile = (props) => {
                     }, props.imgss]}
                     resizeMode="contain"
                 />
-            </TouchableOpacity>
+            </View>
         </View >
     )
 }

@@ -6,52 +6,57 @@ import { Slider } from '@miblanchard/react-native-slider';
 import { color, responsiveWidth } from '../constant/theme';
 
 const FontSizeSlider = (props) => {
-    const [size, setsize] = useState(8)
+    const { minValue, maximumValue, showBack } = props
+
+    const [size, setsize] = useState(minValue)
     return (
-        <Modal isVisible={props.toggleModal1} animationIn={"slideInUp"}>
-            <View style={{
-                backgroundColor: color.white,
-                borderRadius: 10
-            }}>
-                <Slider
-                    minimumValue={8}
-                    containerStyle={{ margin: responsiveWidth("5%") }}
-                    maximumValue={props.maximumValue}
-                    value={size}
-                    onValueChange={(value) => {
-                        setsize(parseInt(value))
+        // <Modal isVisible={props.toggleModal1} animationIn={"slideInUp"}>
+        <View style={{
+            backgroundColor: color.transparent,
+            borderRadius: 10,
+            margin: responsiveWidth("1%"),
+            flex: 1
+        }}>
+            <Slider
+                minimumValue={minValue}
+                containerStyle={{ margin: responsiveWidth("1%") }}
+                maximumValue={maximumValue}
+                value={size}
+                onValueChange={(value) => {
+                    setsize(parseInt(value))
+                }}
+            />
+            {showBack &&
+                (<View style={{ height: 25, width: "100%", alignSelf: "center", }}>
+                    <Text style={{ color: color.black, alignSelf: "center", }}> Select Font Size</Text>
+                </View>)}
+            <View style={{ flexDirection: 'row', justifyContent: "space-around" }}>
+                {/* <Button
+                    title={"Back"}
+                    onPress={() => props.ToggleModalHandler1()}
+                    buttonContainer={{
+                        width: responsiveWidth("25%"),
+                        padding: responsiveWidth("3%"),
+                        borderRadius: 5,
+                        backgroundColor: color.primary
+                    }}
+                /> */}
+                <Button
+                    title={"save"}
+                    onPress={() => {
+                        props.fontSizefooterHandler(size)
+                        // props.ToggleModalHandler1()
+                    }}
+                    buttonContainer={{
+                        width: responsiveWidth("25%"),
+                        padding: responsiveWidth("1%"),
+                        borderRadius: 5,
+                        backgroundColor: color.primary
                     }}
                 />
-                <View style={{ height: 50, width: "100%", alignSelf: "center", }}>
-                    <Text style={{ color: color.black, alignSelf: "center", fontSize: size }}> Select Font Size</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: "space-around" }}>
-                    <Button
-                        title={"Back"}
-                        onPress={() => props.ToggleModalHandler1()}
-                        buttonContainer={{
-                            width: responsiveWidth("25%"),
-                            padding: responsiveWidth("3%"),
-                            borderRadius: 5,
-                            backgroundColor: color.primary
-                        }}
-                    />
-                    <Button
-                        title={"save"}
-                        onPress={() => {
-                            props.fontSizefooterHandler(size)
-                            props.ToggleModalHandler1()
-                        }}
-                        buttonContainer={{
-                            width: responsiveWidth("25%"),
-                            padding: responsiveWidth("3%"),
-                            borderRadius: 5,
-                            backgroundColor: color.primary
-                        }}
-                    />
-                </View>
             </View>
-        </Modal>
+        </View>
+        // </Modal>
     )
 }
 

@@ -6,11 +6,13 @@ import { icons } from '../assets';
 import Draggable from 'react-native-draggable';
 import { responsiveWidth } from '../constant/theme';
 import { styles } from '../screen/EditPhoto/styles';
+import { useSelector } from 'react-redux';
 
 const DraggableImage = () => {
     let actionSheet = useRef();
-    const [urll, seturll] = useState(null)
-
+    const dataprofile = useSelector((state) => state.user.userData)
+    const pic = dataprofile.profilephoto
+    const [urll, seturll] = useState(pic)
 
     const onPressCamera = useCallback(() => {
         let options = {
@@ -62,11 +64,11 @@ const DraggableImage = () => {
                 isCircle={true}
                 renderSize={65}
                 x={responsiveWidth("75%")}
-                y={responsiveWidth("50%")}
+                y={responsiveWidth("75%")}
                 minX={responsiveWidth("1%")}
                 maxX={responsiveWidth("99%")}
                 minY={responsiveWidth("2%")}
-                maxY={responsiveWidth("68%")}
+                maxY={responsiveWidth("95%")}
                 onLongPress={() => actionSheet.current.show()}
                 children={<ImgProfile urll={urll} />}
             />

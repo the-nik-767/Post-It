@@ -45,17 +45,18 @@ const Menupopover = (props) => {
     return (
         <Menu>
             <MenuTrigger>
-                <View style={[styles.ColorContainer, { justifyContent: "space-between", marginVertical: responsiveWidth("0%") }]}>
-                    <Text style={[styles.FontStyletxt, { fontFamily: props.FooterFontfontFamily }]}>Font Style</Text>
-                    <Image
-                        source={icons.ic_dots}
-                        style={{
-                            height: responsiveWidth("3%"),
-                            width: responsiveWidth("3%"),
-                            margin: 5
-                        }}
-                        resizeMode="contain"
-                    /></View>
+                {/* <View style={[styles.ColorContainer, { justifyContent: "space-between", marginVertical: responsiveWidth("0%") }]}> */}
+                {/* <Text style={[styles.FontStyletxt, { fontFamily: props.FooterFontfontFamily }]}>Font Style</Text> */}
+                <Image
+                    source={icons.ic_font_adjustment}
+                    style={{
+                        height: responsiveWidth("5%"),
+                        width: responsiveWidth("5%"),
+                        margin: 15
+                    }}
+                    resizeMode="contain"
+                />
+                {/* </View> */}
             </MenuTrigger>
             <MenuOptions  >
                 {

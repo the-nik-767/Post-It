@@ -1,12 +1,15 @@
 import { useRoute } from '@react-navigation/native'
 import React, { useCallback, useEffect, useRef, useState, } from 'react'
-import { ScrollView, Text, View, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
-import ActionSheet from 'react-native-actionsheet'
+import { ScrollView, Text, View, TouchableOpacity, KeyboardAvoidingView, Image } from 'react-native'
+import { icons } from '../../assets'
 import { Header } from '../../components'
 import BottomBtn from '../../components/BottomBtn'
+import BtnShare from '../../components/BtnShare'
 import FontSizeHandler from '../../components/FontSizeHandler'
+import FontSizeSlider from '../../components/FontSizeSlider'
 import HandleBtn from '../../components/HandleBtn'
 import Menupopover from '../../components/MenuPopover'
+import Profile from '../../components/ProfileImage'
 import TriangleColorPickerpopover from '../../components/TriangleColorPicker'
 import ViewShotSS from '../../components/ViewShot'
 import { color, fontSize, responsiveWidth } from '../../constant/theme'
@@ -15,30 +18,19 @@ import { styles } from './styles'
 const EditPhoto = (props) => {
     const route = useRoute()
     const params = route.params.data;
-    // console.log("bghgghggbgvhgvghv", cc);
     const img = params.imgURL
     const ref = useRef();
-    let actionShee2 = useRef();
-    const [FooterEdit, setFooterEdit] = useState(false);
-    const [EditPhoto, setEditPhoto] = useState(false);
     const [Footer, setFooter] = useState(false);
-    const [toggleModal, setToggleModal] = useState(false);
-    const [toggleModal3, setToggleModal3] = useState(false);
+    const [toggleModal, setToggleModal] = useState(1);
     const [toggleModal2, setToggleModal2] = useState(false);
     const [FooterColor, setFooterColor] = useState("");
     const [FooterColorTxt, setFooterColorTxt] = useState("");
     const [fonttxt, setfonttxt] = useState(false);
-    const [BColor, setBColor] = useState(false);
+    const [footerRemover, setfooterRemover] = useState(false);
     const [fontSizefooter, setfontSizefooter] = useState(fontSize.regular);
+    const [footerSizefooter, setfooterSizefooter] = useState("74");
+    const [footerSizedreg, setfooterSizedreg] = useState(4);
     const [FooterFontfontFamily, setFooterFontfontFamily] = useState("Roboto-Regular")
-    const [PhotoFontfontFamily, setPhotoFontfontFamily] = useState("Roboto-Regular")
-    const [photoText, setphotoText] = useState(false);
-    const [phototxtshow, setphototxtshow] = useState(false)
-    const [PartyIconshow, setPartyIconshow] = useState(false)
-    const [PhotoColorTxt, setPhotoColorTxt] = useState(color.white);
-    const [fontSizephoto, setfontSizephoto] = useState(fontSize.regular);
-
-
 
     useEffect(() => {
         setFooterColor(color.darkwhite);
@@ -50,121 +42,134 @@ const EditPhoto = (props) => {
 
     //FooterColorhandletxt
     const Colorhandle = useCallback(() => {
-        setToggleModal(true)
-        setfonttxt(true)
+        setToggleModal(1)
+        // setfonttxt(true)
     }, [toggleModal])
 
     const FooterColorhandletxt = useCallback((color) => {
+        // console.log("dfjughjfdtgtu", color);
         setFooterColorTxt(color)
-        setToggleModal(false)
+        setToggleModal(0)
     }, [FooterColorTxt])
 
     //FooterColorhandler
     const Colorhandle2 = useCallback(() => {
-        setToggleModal2(true)
-        setBColor(true)
-    }, [toggleModal2])
+        setToggleModal(2)
+        // setBColor(true)
+    }, [toggleModal])
 
     const FooterColorhandler = useCallback((color) => {
+        // console.log("dfjughju", color);
         setFooterColor(color)
-        setToggleModal2(false)
+        setToggleModal(0)
     }, [FooterColor])
 
     //setfontSizefooterHandler
-    const fontSizefooterHandler = useCallback((value) => { setfontSizefooter(parseInt(value)) }, [fontSizefooter])
+    const fontSizefooterHandler = useCallback((value) => {
+        setfontSizefooter(parseInt(value))
+        setToggleModal(0)
+    }, [fontSizefooter])
 
-    // photoFontfontFamily
-    const selecthandle1 = useCallback((items) => { setPhotoFontfontFamily(items.fonst) }, [PhotoFontfontFamily])
+    const FontSizeSliderhandle = useCallback(() => {
+        setToggleModal(3)
+    }, [toggleModal])
 
-    const Colorhandle3 = useCallback(() => {
-        setToggleModal3(true)
-        setphotoText(true)
-    }, [toggleModal3])
+    const FooterSizeSliderhandle = useCallback(() => {
+        setToggleModal(4)
+    }, [toggleModal])
 
-    const PhotoColorhandletxt = useCallback((color) => {
-        setPhotoColorTxt(color)
-        setToggleModal3(false)
-    }, [PhotoColorTxt])
+    const FooterSizefooterHandler = useCallback((value) => {
+        setfooterSizefooter(value)
+        setfooterSizedreg(parseInt(value - 65))
+        setToggleModal(0)
+    }, [footerSizefooter])
 
-    const fontSizephotoHandler = useCallback((value) => { setfontSizephoto(parseInt(value)) }, [fontSizephoto])
+    const FooterRemoverhandle = () => {
+        setfooterRemover(!footerRemover)
+    }
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={{ flex: 1 }}>
-            <Header showBack={true} title={"Edit"} />
-            <ViewShotSS
-                PartyIconshow={PartyIconshow}
-                viewShotRefss={ref}
-                Footer={Footer}
-                img={img}
-                setphototxtshow={setphototxtshow}
-                phototxtshow={phototxtshow}
-                FooterColor={FooterColor}
-                fontSizephoto={fontSizephoto}
-                PhotoFontfontFamily={PhotoFontfontFamily}
-                fontSizefooter={fontSizefooter}
-                FooterColorTxt={FooterColorTxt}
-                FooterFontfontFamily={FooterFontfontFamily}
-                PhotoColorTxt={PhotoColorTxt}
+        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} >
+            <Header
+                showBack={true}
+                title={"Edit"}
+                rightContainer={<BtnShare viewShotRef={ref} />}
             />
             <ScrollView>
-                {FooterEdit === true ?
-                    <View style={styles.bottomContainer}>
+                <ViewShotSS
+                    footerSizefooter={footerSizefooter}
+                    footerSizedreg={footerSizedreg}
+                    viewShotRefss={ref}
+                    Footer={Footer}
+                    img={img}
+                    FooterColor={FooterColor}
+                    fontSizefooter={fontSizefooter}
+                    FooterColorTxt={FooterColorTxt}
+                    footerRemover={footerRemover}
+                    FooterFontfontFamily={FooterFontfontFamily}
+                />
+                <View style={{ flexDirection: "column-reverse", flex: 1 }} >
+                    <View style={{ flexDirection: "row", justifyContent: "space-around", marginBottom: responsiveWidth("5%") }}>
                         <Menupopover FooterFontfontFamily={FooterFontfontFamily} selecthandle={selecthandle} />
-                        <FontSizeHandler maximumValue={14} fontSizefooterHandler={fontSizefooterHandler} />
-                        <TouchableOpacity onPress={Colorhandle} style={[styles.ColorContainer, { marginVertical: responsiveWidth("2%"), }]}>
-                            {fonttxt != true && (
-                                <Text style={{ color: color.black }}>Font Color</Text>
-                            )}
-                            {fonttxt === true && (
-                                <View style={[styles.colorTxtbtn, { backgroundColor: fonttxt === true ? FooterColorTxt : color.white, width: fonttxt != true ? 0 : responsiveWidth("20%") }]} />
-                            )}
+                        <TouchableOpacity onPress={Colorhandle2} >
+                            <Image
+                                source={icons.ic_font_palette}
+                                style={styles.bottomicon}
+                                resizeMode="contain"
+                            />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={Colorhandle2} style={[styles.ColorContainer, { marginVertical: responsiveWidth("2%"), }]}>
-                            {BColor != true && (
-                                <Text style={{ color: color.black, }}>Background Color</Text>
-                            )}
-                            {BColor === true && (
-                                <View style={[styles.colorTxtbtn, { backgroundColor: BColor === true ? FooterColor : color.white, width: BColor != true ? 0 : responsiveWidth("20%"), }]} />
-                            )}
+                        <TouchableOpacity onPress={FontSizeSliderhandle}>
+                            <Image
+                                source={icons.ic_font_typography}
+                                style={styles.bottomicon}
+                                resizeMode="contain"
+                            />
                         </TouchableOpacity>
-                        <HandleBtn HandleBtnstyle={{ marginHorizontal: responsiveWidth("25%") }} showhandler={Footer} Footerhandle={() => setFooter(!Footer)} addTitle={"Footer Add"} removeTitle={"Footer Remove"} />
+                        <TouchableOpacity onPress={Colorhandle}>
+                            <Image
+                                source={icons.ic_font_theme}
+                                style={styles.bottomicon}
+                                resizeMode="contain"
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={FooterRemoverhandle}>
+                            <Image
+                                source={icons.ic_text_remove}
+                                style={styles.bottomicon}
+                                resizeMode="contain"
+                            />
+                        </TouchableOpacity>
                     </View>
-                    : EditPhoto === true ?
-                        <View style={styles.bottomContainer}>
-                            <Menupopover FooterFontfontFamily={PhotoFontfontFamily} selecthandle={selecthandle1} />
-                            <FontSizeHandler maximumValue={36} fontSizefooterHandler={fontSizephotoHandler} />
-                            <TouchableOpacity onPress={Colorhandle3} style={[styles.ColorContainer, { marginVertical: responsiveWidth("2%"), }]}>
-                                {photoText != true && (
-                                    <Text style={{ color: color.black }}>Font Color</Text>
-                                )}
-                                {photoText === true && (
-                                    <View style={[styles.colorTxtbtn, { backgroundColor: photoText === true ? PhotoColorTxt : color.white, width: photoText != true ? 0 : responsiveWidth("20%") }]} />
-                                )}
-                            </TouchableOpacity>
-                            <HandleBtn showhandler={PartyIconshow} Footerhandle={() => setPartyIconshow(!PartyIconshow)} addTitle={"Add party icon"} removeTitle={"Remove party icon"} />
-                            <HandleBtn HandleBtnstyle={{ marginHorizontal: responsiveWidth("25%") }} showhandler={phototxtshow} Footerhandle={() => setphototxtshow(!phototxtshow)} addTitle={"Add Text"} removeTitle={"Remove Text"} />
-                        </View>
-                        : null}
-                <BottomBtn showActionSheetEdit={() => { actionShee2.current.show() }} viewShotRef={ref} />
-                <ActionSheet
-                    ref={actionShee2}
-                    options={["Edit footer", "Edit Photo", "Cancel"]}
-                    cancelButtonIndex={2}
-                    destructiveButtonIndex={2}
-                    onPress={(index) => {
-                        if (index == 0) {
-                            setFooterEdit(true)
-                            setEditPhoto(false)
-                        } else if (index == 1) {
-                            setEditPhoto(true)
-                            setFooterEdit(false)
-                        } else {
-                            console.log("error");
-                        }
-                    }} />
-                <TriangleColorPickerpopover toggleModal={toggleModal} FooterColorhandle={FooterColorhandletxt} ToggleModalHandler={() => setToggleModal(false)} />
-                <TriangleColorPickerpopover toggleModal={toggleModal2} FooterColorhandle={FooterColorhandler} ToggleModalHandler={() => setToggleModal2(false)} />
-                <TriangleColorPickerpopover toggleModal={toggleModal3} FooterColorhandle={PhotoColorhandletxt} ToggleModalHandler={() => setToggleModal3(false)} />
+                    <View style={[styles.bottomContainer, { height: toggleModal === 0 ? 60 : 160, width: 340 }]}>
+                        {toggleModal === 1 ? (
+                            <TriangleColorPickerpopover
+                                FooterColorhandle={FooterColorhandler}
+                                ToggleModalHandler={() => setToggleModal(1)} />
+                        ) : toggleModal === 2 ? (
+                            <TriangleColorPickerpopover
+                                FooterColorhandle={FooterColorhandletxt}
+                                ToggleModalHandler={() => setToggleModal(2)} />
+                        ) : toggleModal === 3 ? (
+                            <FontSizeSlider
+                                maximumValue={17}
+                                minValue={7}
+                                showBack={true}
+                                toggleModal1={FontSizeSliderhandle}
+                                ToggleModalHandler1={() => setToggleModal(3)}
+                                fontSizefooterHandler={fontSizefooterHandler} />
+                        ) : toggleModal === 4 ? (
+                            <FontSizeSlider
+                                maximumValue={90}
+                                minValue={74}
+                                showBack={false}
+                                toggleModal1={FooterSizeSliderhandle}
+                                ToggleModalHandler1={() => setToggleModal(0)}
+                                fontSizefooterHandler={FooterSizefooterHandler} />
+                        ) : null}
+                    </View>
+
+                </View>
+
             </ScrollView>
         </KeyboardAvoidingView>
     )

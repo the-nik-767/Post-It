@@ -1,50 +1,53 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { Text, TextInput, View } from 'react-native';
 import Draggable from 'react-native-draggable';
-import { responsiveWidth } from '../constant/theme';
+import { color, responsiveWidth } from '../constant/theme';
+import { DragTextEditor } from './dregTxt';
 
 
 const TextDraggable = (props) => {
-    const [text, onChangeText22] = useState("footer description");
+    const { FooterColorTxt, fontSizefooter, FooterFontfontFamily, footerSizedreg, FooterColor } = props
+
+    const [text, onChangeText22] = useState("");
     const [handleChangeFocus, sethandleChangeFocus] = useState(false)
+    const [width, setwidth] = useState(20)
+    const [hp, sethp] = useState(50)
 
     return (
-        <View style={{ flex: 1 }}>
-            {handleChangeFocus === true ? (<TextInput
-                style={{ width: "100%", height: 50, marginTop: -19, }}
-                // numberOfLines={1}
+
+        <View style={{ backgroundColor: FooterColor }}>
+            <TextInput
+                style={{
+                    color: FooterColorTxt,
+                    fontSize: fontSizefooter,
+                    fontFamily: FooterFontfontFamily,
+                    padding: 0,
+                    paddingLeft: responsiveWidth("5%")
+                    // borderWidth: handleChangeFocus ? 1 : 0,
+                    // width: footerSizedreg * 40
+                    // flex: 1,
+                    // width: width,
+                    // height: hp
+                    // backgroundColor: handleChangeFocus ? color.yellow : null,
+                }}
+                // numberOfLines={2}
                 // maxLength={40}
                 multiline
                 autoCorrect={false}
-                onEndEditing={(e) => console.log("dfg", e)}
+                onContentSizeChange={(event) => {
+                    setwidth(event.nativeEvent.contentSize.width)
+                    sethp(event.nativeEvent.contentSize.height)
+                }}
+                // onEndEditing={(e) => console.log("dfg", e)}
                 onBlur={() => { sethandleChangeFocus(false) }}
                 onFocus={() => { sethandleChangeFocus(true) }}
                 onChangeText={(i) => onChangeText22(i)}
                 value={text}
-                placeholder={text}
-                placeholderTextColor={props.FooterColorTxt}
-            />) : (<View>
-                <Draggable
-                    x={responsiveWidth(0)}
-                    y={responsiveWidth(-1)}
-                    minX={responsiveWidth("0%")}
-                    maxX={responsiveWidth("100%")}
-                    minY={responsiveWidth(-1)}
-                    maxY={responsiveWidth(4)}
-                    onPressIn={() => console.log("wuhdue")}
-                    onLongPress={() => { sethandleChangeFocus(true) }}
-                >
-                    <Text
-                        style={{
-                            color: handleChangeFocus === true ? "#ffffff00" : props.FooterColorTxt,
-                            fontSize: 25,
-                            fontFamily: props.FooterFontfontFamily
-                        }}>{text}</Text>
-                </Draggable>
-            </View>)}
-
+                placeholder={"Enter Something"}
+                placeholderTextColor={FooterColorTxt}
+            />
         </View>
     );
 };
 
-export default TextDraggable
+export default memo(TextDraggable)

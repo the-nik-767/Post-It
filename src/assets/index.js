@@ -20,4 +20,13 @@ export const icons = {
     ic_edit: require("./icons/edit.png"),
     ic_cancel: require("./icons/cancel.png"),
     ic_editpic: require("./icons/editpic.png"),
+    ic_font_adjustment: require("./icons/font-adjustment.png"),
+    ic_font_typography: require("./icons/typography.png"),
+    ic_font_palette: require("./icons/palette.png"),
+    ic_font_theme: require("./icons/theme.png"),
+    ic_wide: require("./icons/wide.png"),
+    ic_text_remove: require("./icons/text.png"),
+
+
+
 };

@@ -155,9 +155,17 @@ const Profile = (props) => {
                 dispatch(getUserData(id))
                     .then((res) => {
                         console.log("::respons", res);
+                        Alert.alert(
+                            "PostIt",
+                            "profile updated successfully",
+                            [
+                                { text: "OK", onPress: () => navigation.navigate("Settings") }
+                            ]
+                        );
                     })
                     .catch((error) => {
                         console.log("::errors", error);
+                        Alert.alert("PostIt", error)
                     });
                 console.log("pp", p)
             }).catch((e) => {
@@ -255,9 +263,9 @@ const Profile = (props) => {
                     </TouchableOpacity>
                 </View>
                 <Text style={style.infocontainer}>Account Info</Text>
+                <Text style={style.textcontainer}>Firstname</Text>
                 <View style={style.pikContainer}>
                     <View style={style.firstviwecontainer}>
-                        <Text style={style.textcontainer}>Firstname</Text>
                         <TextInput
                             autoCorrect={false}
                             placeholder="Firstname"
@@ -272,9 +280,9 @@ const Profile = (props) => {
                         />
                     </View>
                 </View>
+                <Text style={style.textcontainer}>Lastname</Text>
                 <View style={style.pikContainer}>
                     <View style={style.firstviwecontainer}>
-                        <Text style={style.textcontainer}>Lastname</Text>
                         <TextInput
                             autoCorrect={false}
                             placeholder="Lastname"
@@ -289,9 +297,9 @@ const Profile = (props) => {
                         />
                     </View>
                 </View>
+                <Text style={style.textcontainer}>PhoneNo</Text>
                 <View style={style.pikContainer}>
                     <View style={style.firstviwecontainer}>
-                        <Text style={style.textcontainer}>PhoneNo</Text>
                         <TextInput
                             autoCorrect={false}
                             placeholder="PhoneNo"
@@ -306,9 +314,9 @@ const Profile = (props) => {
                         />
                     </View>
                 </View>
+                <Text style={style.textcontainer}>Email</Text>
                 <TouchableOpacity onPress={() => { Alert.alert("You Can't Change Email.", "For Change Email Contact To Admin") }} style={style.pikContainer}>
                     <View style={[style.firstviwecontainer, { marginVertical: responsiveWidth("3.5%") }]}>
-                        <Text style={style.textcontainer}>Email</Text>
                         <Text style={[style.detelcontainer, { marginRight: 5 }]} >{userData?.email}</Text>
                     </View>
                 </TouchableOpacity>

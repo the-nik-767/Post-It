@@ -30,9 +30,8 @@ export const styles = StyleSheet.create({
     input: {
     },
     imageBackgroundContainer: {
-        height: responsiveWidth("70%"),
-        width: "100%",
-        borderRadius: 20
+        height: responsiveWidth("100%"),
+        width: responsiveWidth("100%"),
     },
     draggableimg: {
         height: 65,
@@ -48,8 +47,8 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "space-between",
-        marginHorizontal: responsiveWidth("2%"),
-        marginVertical: responsiveWidth("10%")
+        // marginHorizontal: responsiveWidth("2%"),
+        // marginVertical: responsiveWidth("10%")
     },
     FooterhandleBtn: {
         width: responsiveWidth("45%"),
@@ -98,5 +97,10 @@ export const styles = StyleSheet.create({
     FontStyletxt: {
         marginHorizontal: responsiveWidth("3%"),
         color: color.black
+    },
+    bottomicon: {
+        height: responsiveWidth("5%"),
+        width: responsiveWidth("5%"),
+        margin: 15
     }
 });

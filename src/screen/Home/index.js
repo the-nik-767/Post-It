@@ -109,7 +109,7 @@ const Home = (props) => {
         setCatagoryItem(index)
         setTimeout(() => {
             setisVisible(false)
-        }, 50)
+        }, 200)
     }, [])
 
     const Catagory = () => (

@@ -12,14 +12,14 @@ export const Like = (props) => {
     }
 
     return (
-        <View style={{ backgroundColor: color.white, flex: 1, justifyContent: "center", alignItems: "center", }}>
-            <TouchableOpacity onPress={onEditPress}>
+        <TouchableOpacity activeOpacity={0.9} onPress={onEditPress} style={{ backgroundColor: color.white, flex: 1, justifyContent: "center", alignItems: "center", }}>
+            <View >
                 <Image
                     style={[style.tinyLogo]}
                     source={icons.ic_editpic}
                 />
-            </TouchableOpacity>
-        </View>
+            </View>
+        </TouchableOpacity >
     )
 }
 
