@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     input: {
     },
     imageBackgroundContainer: {
-        height: responsiveWidth("100%"),
+        height: responsiveWidth("110%"),
         width: responsiveWidth("100%"),
     },
     draggableimg: {

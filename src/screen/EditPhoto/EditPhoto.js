@@ -49,7 +49,7 @@ const EditPhoto = (props) => {
     const FooterColorhandletxt = useCallback((color) => {
         // console.log("dfjughjfdtgtu", color);
         setFooterColorTxt(color)
-        setToggleModal(0)
+        // setToggleModal(0)
     }, [FooterColorTxt])
 
     //FooterColorhandler
@@ -61,13 +61,13 @@ const EditPhoto = (props) => {
     const FooterColorhandler = useCallback((color) => {
         // console.log("dfjughju", color);
         setFooterColor(color)
-        setToggleModal(0)
+        // setToggleModal(0)
     }, [FooterColor])
 
     //setfontSizefooterHandler
     const fontSizefooterHandler = useCallback((value) => {
         setfontSizefooter(parseInt(value))
-        setToggleModal(0)
+        // setToggleModal(0)
     }, [fontSizefooter])
 
     const FontSizeSliderhandle = useCallback(() => {
@@ -153,7 +153,7 @@ const EditPhoto = (props) => {
                             <FontSizeSlider
                                 maximumValue={17}
                                 minValue={7}
-                                showBack={true}
+                                // showBack={true}
                                 toggleModal1={FontSizeSliderhandle}
                                 ToggleModalHandler1={() => setToggleModal(3)}
                                 fontSizefooterHandler={fontSizefooterHandler} />

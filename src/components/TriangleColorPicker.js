@@ -21,17 +21,26 @@ const TriangleColorPickerpopover = (props) => {
         <View
             style={{
                 backgroundColor: color.transparent,
-                // flex: 1
+                flex: 1, 
+                paddingHorizontal:responsiveWidth("30%")
             }}
         >
             <TriangleColorPicker
-                onColorChange={(color) => convetColor(color)}
-                onOldColorSelected={(color) => SetColorSelected(color)}
-                style={{ height: responsiveWidth("30%"), width: responsiveWidth("60%"), marginHorizontal: responsiveWidth("20%") }}
+            hideControls={true}
+            style={{ height: responsiveWidth("40%"), width: responsiveWidth("40%")}}
+                onColorChange={(color) => {
+                    let colorCode = fromHsv({ h: color.h, s: color.s, v: color.v })
+                    props.FooterColorhandle(colorCode)
+                }}
+                onOldColorSelected={(color) => {
+                    let colorCode = fromHsv({ h: color.h, s: color.s, v: color.v })
+                    props.FooterColorhandle(colorCode)
+                }}
+               
             />
-            <Text style={{ alignSelf: "center", color: color.black }}>Select Color</Text>
-            <View style={{ flexDirection: 'row', justifyContent: "space-around" }}>
-                {/* <Button
+            {/* <Text style={{ alignSelf: "center", color: color.black }}>Select Color</Text> */}
+            {/* <View style={{ flexDirection: 'row', justifyContent: "space-around" }}>
+                <Button
                     title={"Back"}
                     onPress={() => props.ToggleModalHandler()}
                     buttonContainer={{
@@ -40,7 +49,7 @@ const TriangleColorPickerpopover = (props) => {
                         borderRadius: 5,
                         backgroundColor: color.primary,
                     }}
-                /> */}
+                />
                 <Button
                     title={"save"}
                     onPress={() => props.FooterColorhandle(ColorSelected)}
@@ -51,7 +60,7 @@ const TriangleColorPickerpopover = (props) => {
                         backgroundColor: color.primary
                     }}
                 />
-            </View>
+            </View> */}
 
         </View>
         // </Modal>

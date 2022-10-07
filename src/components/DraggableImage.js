@@ -63,12 +63,12 @@ const DraggableImage = () => {
             <Draggable
                 isCircle={true}
                 renderSize={65}
-                x={responsiveWidth("75%")}
-                y={responsiveWidth("75%")}
+                x={responsiveWidth("80%")}
+                y={responsiveWidth("90%")}
                 minX={responsiveWidth("1%")}
                 maxX={responsiveWidth("99%")}
                 minY={responsiveWidth("2%")}
-                maxY={responsiveWidth("95%")}
+                maxY={responsiveWidth("110%")}
                 onLongPress={() => actionSheet.current.show()}
                 children={<ImgProfile urll={urll} />}
             />

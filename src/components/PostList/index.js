@@ -1,11 +1,11 @@
-import React, { memo, useRef, useState, useEffect, useCallback } from 'react'
+import React, { memo, useRef, useState, useEffect, useCallback ,Suspense} from 'react'
 import { Image, View, ImageBackground, TouchableOpacity } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import { color } from '../../constant/theme'
 import { Like } from '../common/like'
 import { styles } from './styles';
 import ViewShot from "react-native-view-shot";
-import Profile from '../ProfileImage'
+// import Profile from '../ProfileImage'
 import { useNavigation } from '@react-navigation/native'
 import BottomBtnShare from '../BottomBtnShare'
 
@@ -16,6 +16,8 @@ const PostList = (props) => {
     const navigation = useNavigation();
     const [width, setwidth] = useState();
     const [height, setheight] = useState();
+
+    const Profile = React.lazy(() => import('../ProfileImage'));
 
     useEffect(() => {
         Image.getSize(imgURL, (width, height) => {
@@ -45,7 +47,9 @@ const PostList = (props) => {
                                 justifyContent: "flex-end",
                             }}
                         >
+                            <Suspense fallback={null}>
                             <Profile imgss={styles.profileimgStyle} />
+                            </Suspense>
                         </ImageBackground>
                     </ViewShot>
                 </View>

@@ -25,7 +25,7 @@ const style = StyleSheet.create({
   loaderContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: color.transparentGray,
+    backgroundColor: color.transparent,
     position: "absolute",
     top: 0,
     left: 0,

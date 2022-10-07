@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState, Suspense } from "react";
 import { Text, View, ScrollView, Image, TouchableOpacity, FlatList, } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { color, responsiveWidth } from "../../constant/theme";
 import Profile from "../../components/ProfileImage";
 import { Header } from "../../components";
 import { styles } from "./styles";
-import PostList from "../../components/PostList";
+// import PostList from "../../components/PostList";
 import firestore from "@react-native-firebase/firestore";
 import { Loader } from "../../components/loader";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -21,6 +21,8 @@ const Home = (props) => {
     const [Birthday, setBirthday] = useState([])
     const [isVisible, setisVisible] = useState(false)
     const [userid, setuserid] = useState()
+
+    const PostList = React.lazy(() => import('../../components/PostList'));
 
     useEffect(() => {
         getCategoryList()
@@ -101,7 +103,7 @@ const Home = (props) => {
     }, [Menuitem])
 
     const renderItem = (item) => {
-        return (<PostList data={item} imgURL={item?.imgURL} id={item?.id} />)
+        return (<Suspense fallback={null}><PostList data={item} imgURL={item?.imgURL} id={item?.id} /></Suspense>)
     }
 
     const CatagoryItemHendler = useCallback((index) => {

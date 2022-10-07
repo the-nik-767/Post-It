@@ -22,16 +22,17 @@ const FontSizeSlider = (props) => {
                 containerStyle={{ margin: responsiveWidth("1%") }}
                 maximumValue={maximumValue}
                 value={size}
-                onValueChange={(value) => {
-                    setsize(parseInt(value))
+                onSlidingComplete={(value) => {
+                    props.fontSizefooterHandler(parseInt(value))
+                    // setsize(parseInt(value))
                 }}
             />
-            {showBack &&
+            {/* {showBack &&
                 (<View style={{ height: 25, width: "100%", alignSelf: "center", }}>
                     <Text style={{ color: color.black, alignSelf: "center", }}> Select Font Size</Text>
                 </View>)}
             <View style={{ flexDirection: 'row', justifyContent: "space-around" }}>
-                {/* <Button
+                <Button
                     title={"Back"}
                     onPress={() => props.ToggleModalHandler1()}
                     buttonContainer={{
@@ -40,7 +41,7 @@ const FontSizeSlider = (props) => {
                         borderRadius: 5,
                         backgroundColor: color.primary
                     }}
-                /> */}
+                />
                 <Button
                     title={"save"}
                     onPress={() => {
@@ -54,7 +55,7 @@ const FontSizeSlider = (props) => {
                         backgroundColor: color.primary
                     }}
                 />
-            </View>
+            </View> */}
         </View>
         // </Modal>
     )
