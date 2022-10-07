@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Text, View } from 'react-native';
+import { Text, View ,Slider} from 'react-native';
 import Modal from "react-native-modal";
 import { Button } from './common/button';
-import { Slider } from '@miblanchard/react-native-slider';
+// import Slider from '@react-native-community/slider'
 import { color, responsiveWidth } from '../constant/theme';
 
 const FontSizeSlider = (props) => {
@@ -14,14 +14,16 @@ const FontSizeSlider = (props) => {
         <View style={{
             backgroundColor: color.transparent,
             borderRadius: 10,
-            margin: responsiveWidth("1%"),
+            marginTop: responsiveWidth("5%"),
+           
             flex: 1
         }}>
             <Slider
                 minimumValue={minValue}
-                containerStyle={{ margin: responsiveWidth("1%") }}
+                style={{ marginTop: responsiveWidth("1%"), height:responsiveWidth("10%"), }}
                 maximumValue={maximumValue}
                 value={size}
+                
                 onSlidingComplete={(value) => {
                     props.fontSizefooterHandler(parseInt(value))
                     // setsize(parseInt(value))
