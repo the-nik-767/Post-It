@@ -14,8 +14,8 @@ const PostList = (props) => {
     const ref = useRef();
     const { imgURL, id, data } = props;
     const navigation = useNavigation();
-    const [width, setwidth] = useState();
-    const [height, setheight] = useState();
+    const [width, setwidth] = useState(360);
+    const [height, setheight] = useState(393);
 
     const Profile = React.lazy(() => import('../ProfileImage'));
 

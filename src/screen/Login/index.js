@@ -122,7 +122,7 @@ const Login = () => {
                     onPress={onPressLogin}
                 />
             </ScrollView>
-            <Loader isVisible={isVisible} />
+            <Loader isStyle={true} isVisible={isVisible} />
         </View>
     )
 }

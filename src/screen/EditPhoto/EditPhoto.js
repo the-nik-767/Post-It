@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/native'
 import React, { useCallback, useEffect, useRef, useState, } from 'react'
-import { ScrollView, Text, View, TouchableOpacity, KeyboardAvoidingView, Image } from 'react-native'
+import { ScrollView, Text, View, TouchableOpacity, KeyboardAvoidingView, Image, Alert } from 'react-native'
 import { icons } from '../../assets'
 import { Header } from '../../components'
 import BottomBtn from '../../components/BottomBtn'
@@ -22,7 +22,6 @@ const EditPhoto = (props) => {
     const ref = useRef();
     const [Footer, setFooter] = useState(false);
     const [toggleModal, setToggleModal] = useState(1);
-    const [toggleModal2, setToggleModal2] = useState(false);
     const [FooterColor, setFooterColor] = useState("");
     const [FooterColorTxt, setFooterColorTxt] = useState("");
     const [fonttxt, setfonttxt] = useState(false);
@@ -74,19 +73,28 @@ const EditPhoto = (props) => {
         setToggleModal(3)
     }, [toggleModal])
 
-    const FooterSizeSliderhandle = useCallback(() => {
-        setToggleModal(4)
-    }, [toggleModal])
-
-    const FooterSizefooterHandler = useCallback((value) => {
-        setfooterSizefooter(value)
-        setfooterSizedreg(parseInt(value - 65))
-        setToggleModal(0)
-    }, [footerSizefooter])
-
     const FooterRemoverhandle = () => {
-        setfooterRemover(!footerRemover)
+        if(!footerRemover){
+            Alert.alert(
+                "Post-It",
+                "Are you sure remove footer",
+                [
+                  {
+                    text: "No",
+                    onPress: () => console.log("Cancel Pressed"),
+                    style: "cancel"
+                  },
+                  { text: "Yes", onPress: () =>  setfooterRemover(!footerRemover) }
+                ]
+              );    
+        }else{
+            setfooterRemover(!footerRemover)
+        }
     }
+
+const onChangeText22t =(valu)=>{
+    setfonttxt(valu)
+}
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} >
@@ -95,13 +103,19 @@ const EditPhoto = (props) => {
                 title={"Edit"}
                 rightContainer={<BtnShare viewShotRef={ref} />}
             />
-            <ScrollView>
+            <ScrollView
+                contentContainerStyle={{
+                    paddingBottom:50
+                }}
+            >
                 <ViewShotSS
+                onChangeText22={onChangeText22t}
                     footerSizefooter={footerSizefooter}
                     footerSizedreg={footerSizedreg}
                     viewShotRefss={ref}
                     Footer={Footer}
                     img={img}
+                    fonttxt={fonttxt}
                     FooterColor={FooterColor}
                     fontSizefooter={fontSizefooter}
                     FooterColorTxt={FooterColorTxt}
@@ -149,23 +163,15 @@ const EditPhoto = (props) => {
                             <TriangleColorPickerpopover
                                 FooterColorhandle={FooterColorhandletxt}
                                 ToggleModalHandler={() => setToggleModal(2)} />
-                        ) : toggleModal === 3 ? (
+                        ) :  (
                             <FontSizeSlider
                                 maximumValue={17}
                                 minValue={7}
-                                // showBack={true}
+                                valueshow={fontSizefooter}
                                 toggleModal1={FontSizeSliderhandle}
                                 ToggleModalHandler1={() => setToggleModal(3)}
                                 fontSizefooterHandler={fontSizefooterHandler} />
-                        ) : toggleModal === 4 ? (
-                            <FontSizeSlider
-                                maximumValue={90}
-                                minValue={74}
-                                showBack={false}
-                                toggleModal1={FooterSizeSliderhandle}
-                                ToggleModalHandler1={() => setToggleModal(0)}
-                                fontSizefooterHandler={FooterSizefooterHandler} />
-                        ) : null}
+                        )}
                     </View>
 
                 </View>

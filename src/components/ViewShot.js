@@ -8,34 +8,18 @@ import TextDraggable from './Draggabletxt';
 
 const ViewShotSS = (props) => {
 
-    const { footerRemover, viewShotRefss, img, fontSizefooter, FooterColorTxt, FooterFontfontFamily, FooterColor, footerSizedreg, footerSizefooter } = props
+    const {onChangeText22,fonttxt, footerRemover, viewShotRefss, img, fontSizefooter, FooterColorTxt, FooterFontfontFamily, FooterColor, footerSizedreg, footerSizefooter } = props
 
     return (
         <View style={{ marginTop: responsiveWidth("5%") }}>
-            {/* <ViewShot ref={viewShotRefss} style={{ backgroundColor: color.transparent }}>
-                <View style={[styles.ssContainer, { height: responsiveWidth(footerSizefooter), width: "100%" }]}>
-                    <ImageBackground
-                        source={{ uri: img }}
-                        style={styles.imageBackgroundContainer}
-                        resizeMode="contain"
-                    >
-                        <DraggableImage />
-                    </ImageBackground>
-                    <View style={{ backgroundColor: FooterColor, flex: 1 }} >
-                        <TextDraggable footerSizedreg={footerSizedreg} fontSizefooter={fontSizefooter} FooterColorTxt={FooterColorTxt} FooterFontfontFamily={FooterFontfontFamily} />
-                    </View>
-                </View>
-            </ViewShot> */}
             <ViewShot ref={viewShotRefss} style={{ backgroundColor: color.transparent }}>
                 <ImageBackground
                     source={{ uri: img }}
                     style={styles.imageBackgroundContainer}
-                // resizeMode="contain"
                 >
                     <DraggableImage />
                 </ImageBackground>
-
-                {footerRemover && (<TextDraggable FooterColor={FooterColor} footerSizedreg={footerSizedreg} fontSizefooter={fontSizefooter} FooterColorTxt={FooterColorTxt} FooterFontfontFamily={FooterFontfontFamily} />)}
+                <TextDraggable footerRemover={footerRemover} onChangeText22={onChangeText22} fonttxt={fonttxt} FooterColor={FooterColor} footerSizedreg={footerSizedreg} fontSizefooter={fontSizefooter} FooterColorTxt={FooterColorTxt} FooterFontfontFamily={FooterFontfontFamily} />
             </ViewShot>
         </View>
 

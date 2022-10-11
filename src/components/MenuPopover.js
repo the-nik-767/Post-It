@@ -8,8 +8,6 @@ import {
 } from 'react-native-popup-menu';
 import { icons } from "../assets";
 import { color, responsiveWidth } from "../constant/theme";
-import { styles } from "../screen/EditPhoto/styles";
-
 
 
 const Menupopover = (props) => {
@@ -45,8 +43,6 @@ const Menupopover = (props) => {
     return (
         <Menu>
             <MenuTrigger>
-                {/* <View style={[styles.ColorContainer, { justifyContent: "space-between", marginVertical: responsiveWidth("0%") }]}> */}
-                {/* <Text style={[styles.FontStyletxt, { fontFamily: props.FooterFontfontFamily }]}>Font Style</Text> */}
                 <Image
                     source={icons.ic_font_adjustment}
                     style={{
@@ -56,7 +52,6 @@ const Menupopover = (props) => {
                     }}
                     resizeMode="contain"
                 />
-                {/* </View> */}
             </MenuTrigger>
             <MenuOptions  >
                 {

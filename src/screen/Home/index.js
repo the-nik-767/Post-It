@@ -25,9 +25,9 @@ const Home = (props) => {
     const PostList = React.lazy(() => import('../../components/PostList'));
 
     useEffect(() => {
-        getCategoryList()
-        getlistphoto()
         getDataFromAsync()
+        getlistphoto()
+        getCategoryList()
     }, [userid])
 
     const getDataFromAsync = async () => {
@@ -177,7 +177,7 @@ const Home = (props) => {
                 ListHeaderComponent={ListHeaderComponentdata}
                 ListEmptyComponent={ListEmptyComponent}
             />
-            <Loader isVisible={isVisible} />
+            <Loader isStyle={true} isVisible={isVisible} />
         </View>
     )
 }

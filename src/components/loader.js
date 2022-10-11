@@ -7,10 +7,10 @@ import {
 import { color } from "../constant/theme";
 
 
-const Loader = ({ isVisible }) => {
+const Loader = ({ isVisible, isStyle }) => {
   if (isVisible) {
     return (
-      <View style={style.loaderContainer}>
+      <View style={[style.loaderContainer, {backgroundColor :isStyle ? color.transparentGray: color.transparent}]}>
         <ActivityIndicator size="large" />
       </View>
     );
@@ -25,7 +25,7 @@ const style = StyleSheet.create({
   loaderContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: color.transparent,
+    // backgroundColor: color.transparentGray,
     position: "absolute",
     top: 0,
     left: 0,
