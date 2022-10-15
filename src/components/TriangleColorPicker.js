@@ -13,14 +13,16 @@ const TriangleColorPickerpopover = props => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        left: 10,
-        marginTop: responsiveWidth('2%'),
+        left: responsiveWidth('7%'),
       }}>
       <ColorPicker
-        row={true}
+        // discrete
+        // row={true}
+        swatches={{paddingTop: 0}}
+        swatchesOnly={false}
         thumbSize={50}
         sliderHidden={true}
-        sliderSize={20}
+        gapSize={20}
         onColorChange={color => {
           FooterColorhandle(color);
         }}
