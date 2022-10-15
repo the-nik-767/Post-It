@@ -1,10 +1,10 @@
 import React from 'react';
-import { View} from 'react-native';
+import {View} from 'react-native';
 import Slider from '@react-native-community/slider';
 import {color, responsiveWidth} from '../constant/theme';
 
 const FontSizeSlider = props => {
-  const {minValue, maximumValue, fontSizefooterHandler} =  props;
+  const {minValue, maximumValue, fontSizefooterHandler, dif} = props;
 
   return (
     <View
@@ -19,8 +19,9 @@ const FontSizeSlider = props => {
         style={{
           marginTop: responsiveWidth('1%'),
           height: responsiveWidth('10%'),
-          left: 15,
+          marginLeft: responsiveWidth('9%'),
         }}
+        value={dif}
         maximumValue={maximumValue}
         onValueChange={value => {
           fontSizefooterHandler(parseInt(value));

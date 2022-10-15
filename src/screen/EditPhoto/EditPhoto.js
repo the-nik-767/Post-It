@@ -39,7 +39,7 @@ const EditPhoto = props => {
   const [footerSizedreg, setfooterSizedreg] = useState(4);
   const [FooterFontfontFamily, setFooterFontfontFamily] =
     useState('Roboto-Regular');
-
+  const [lines, setLines] = useState(1);
   useEffect(() => {
     setFooterColor(color.darkwhite);
     setFooterColorTxt(color.black);
@@ -84,13 +84,10 @@ const EditPhoto = props => {
   );
 
   //setfontSizefooterHandler
-  const fontSizefooterHandler = useCallback(
-    value => {
-      setfontSizefooter(parseInt(value));
-      // setToggleModal(0)
-    },
-    [fontSizefooter],
-  );
+  const fontSizefooterHandler = value => {
+    setfontSizefooter(parseInt(value));
+    // setToggleModal(0) },
+  };
 
   const FontSizeSliderhandle = useCallback(() => {
     setToggleModal(3);
@@ -133,6 +130,8 @@ const EditPhoto = props => {
           footerSizedreg={footerSizedreg}
           viewShotRefss={ref}
           Footer={Footer}
+          lines={lines}
+          setLines={setLines}
           img={img}
           fonttxt={fonttxt}
           FooterColor={FooterColor}
@@ -198,9 +197,10 @@ const EditPhoto = props => {
               />
             ) : (
               <FontSizeSlider
-                maximumValue={17}
+                maximumValue={22}
                 minValue={7}
                 valueshow={fontSizefooter}
+                dif={fontSizefooter}
                 toggleModal1={FontSizeSliderhandle}
                 ToggleModalHandler1={() => setToggleModal(3)}
                 fontSizefooterHandler={fontSizefooterHandler}
